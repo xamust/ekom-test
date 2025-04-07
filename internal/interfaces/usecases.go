@@ -17,6 +17,9 @@ type BannersUsecases interface {
 		bannerID uint64,
 		filter *types.Filter,
 	) (*types.Stats, error)
-	// IncreaseBannerCount _
-	IncreaseBannerCount(ctx context.Context, bannerID uint64) error
+	// IncreaseBannerCount incr counter by ID
+	IncreaseBannerCount(
+		ctx context.Context,
+		bannerID uint64,
+	) error
 }
