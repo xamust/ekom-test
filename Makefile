@@ -58,3 +58,6 @@ test: ### run test
 	go test -v -race -covermode atomic -coverprofile=coverage.txt ./internal/...
 .PHONY: test
 
+vegeta_load: ### run load test
+	vegeta attack -duration=30s -rate=200 -targets=./tests/targets.txt | tee ./tests/results/results.bin | vegeta report
+.PHONY: vegeta_load
