@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/xamust/ekom-test/config"
 	"github.com/xamust/ekom-test/internal/application"
 )

@@ -1,0 +1,99 @@
+basePath: /api/v1
+definitions:
+  types.Filter:
+    properties:
+      ts_from:
+        example: "2025-04-07T00:00:00Z"
+        type: string
+      ts_to:
+        example: "2025-04-07T23:59:00Z"
+        type: string
+    type: object
+  types.Stat:
+    properties:
+      ts:
+        type: string
+      v:
+        type: integer
+    type: object
+  types.Stats:
+    properties:
+      stats:
+        items:
+          $ref: '#/definitions/types.Stat'
+        type: array
+    type: object
+  v1.ErrorResponse:
+    properties:
+      error:
+        example: internal error
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Сервис, который будет считать клики и собирать их в поминутную статистику
+  title: ekom-test app
+  version: "1.0"
+paths:
+  /banners/counter/{bannerID}:
+    get:
+      consumes:
+      - application/json
+      description: Banner counter inc
+      operationId: Banners_counter
+      parameters:
+      - description: banner id
+        in: path
+        name: bannerID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.ErrorResponse'
+      summary: Счетчик показов баннера по bannerID
+      tags:
+      - banners
+  /banners/stats/{bannerID}:
+    post:
+      consumes:
+      - application/json
+      description: Banners Stat
+      operationId: Banners_stat
+      parameters:
+      - description: banner id
+        in: path
+        name: bannerID
+        required: true
+        type: integer
+      - description: stat
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.Filter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.Stats'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/v1.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/v1.ErrorResponse'
+      summary: Статистика показов по bannerID за указанный промежуток времени
+      tags:
+      - banners
+swagger: "2.0"

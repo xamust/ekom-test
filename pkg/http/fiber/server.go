@@ -2,10 +2,11 @@ package fiber
 
 import (
 	"encoding/json"
-	"github.com/gofiber/fiber/v2"
-	"github.com/xamust/ekom-test/internal/interfaces"
 	"net"
 	"time"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/xamust/ekom-test/internal/interfaces"
 )
 
 var _ interfaces.HTTPServer = (*Server)(nil)

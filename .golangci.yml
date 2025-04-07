@@ -1,0 +1,38 @@
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+    - gosimple
+    - ineffassign
+    - typecheck
+    - goimports
+    - stylecheck
+    - gocritic
+    - gocyclo
+    - nakedret
+    - dupl
+    - goconst
+    - misspell
+    - lll
+    - unparam
+    - dogsled
+
+linters-settings:
+  misspell:
+    locale: US
+  dupl:
+    threshold: 200
+
+issues:
+  exclude-rules:
+    - linters: ["errcheck"]
+      text: "Error return value of .((os\\.)?std(out|err)\\..*|.*Close|.*Flush|os\\..*|.*printf?|.*Print)"
+    - linters: ["lll"]
+      text: "^package comment should be of the form"
+    - linters: ["goimports"]
+      text: "^File is not `goimports`-ed"
+  exclude-files:
+    - ".*_test\\.go$"
+    - "_mock\\.go$"

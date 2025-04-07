@@ -1,0 +1,15 @@
+db:
+  mongo:
+    url: localhost
+    port: 27017
+    max_pool_size: 10
+    connect_timeout: 5s
+    db_name: ekom
+    collection_name: banners
+    username: root
+    password: example
+http:
+  port: 8080
+  use_prefork_mode: false
+swagger:
+  enabled: true
