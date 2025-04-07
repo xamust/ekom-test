@@ -16,7 +16,7 @@ type Config struct {
 func NewConfig() (*Config, error) {
 	var err error
 	cfg := &Config{}
-	if err = cleanenv.ReadConfig("./config.yaml", cfg); err != nil {
+	if err = cleanenv.ReadConfig("./config.default.yaml", cfg); err != nil {
 		return nil, fmt.Errorf("config error: %w", err)
 	}
 	if err = cleanenv.ReadEnv(cfg); err != nil {
