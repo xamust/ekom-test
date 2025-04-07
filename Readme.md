@@ -3,3 +3,5 @@
 cd ./deploy/local
 docker-compose build --no-cache
 docker-compose up
+
+http://localhost:8080/swagger/index.html
